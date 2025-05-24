@@ -35,14 +35,18 @@ app.get("/api/admin/viewlogin", (req, res) => {
     }
 });
 
+function startsWithAdminEmail(email) {
+    const regex = /^admin\b/i;
+    return regex.test(email);
+}
+
 app.post("/api/admin/login", async (req, res) => {
     try {
-
         let credentials = await adminLogin(req.body);
         if (typeof credentials != "string") {
-            if (credentials.password === req.body.password) {
-                res.status(200).sendFile(__dirname+"/public/dashboard-admin.html");
-                res.status(200).send(credentials);
+            if (credentials.password === req.body.password && startsWithAdminEmail(credentials.email)) {
+                res.status(200).sendFile(__dirname + "/public/dashboard-admin.html");
+                // res.status(200).send(credentials);
             } else {
                 res.status(401).send({ "error": 'Invalid password' });
             }

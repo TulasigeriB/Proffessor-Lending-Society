@@ -30,14 +30,14 @@ async function hashPassword(password) {
 
 export async function register(details) {
     return new Promise(async (resolve, reject) => {
-
-        let query = `INSERT INTO Members(member_id,name,email,password,phone,department,institution,membership_level,share_count,credit_score,join_date,status) VALUES ('${uuidv4()}','${details.name}','${details.email}','${details.password}','${details.phone}','${details.dept}','${details.inst}','${details.memb_lv}','${details.sh_count}',700.00,current_timestamp(),'active')`;
+        let id = uuidv4();
+        let query = `INSERT INTO Members(member_id,name,email,password,phone,department,institution,membership_level,share_count,credit_score,join_date,status) VALUES ('${id}','${details.name}','${details.email}','${details.password}','${details.phone}','${details.dept}','${details.inst}','${details.memb_lv}','${details.sh_count}',700.00,current_timestamp(),'active')`;
 
         connection.query(query, (err, result) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(result);
+                resolve(id);
             }
         });
     });
@@ -121,7 +121,7 @@ export async function buyShare(params) {
 
 export async function adminLogin(params) {
     return new Promise(async (resolve, reject) => {
-        let query = `SELECT * FROM Members where email='${credentials.email}'`;
+        let query = `SELECT * FROM Members where email='${params.email}'`;
 
         connection.query(query, (error, result) => {
             if (error) {
