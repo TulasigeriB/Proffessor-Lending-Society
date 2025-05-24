@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Professor Lending Society</title>
+    <link rel="stylesheet" href="../css/signin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="right-container">
+            <div class="right-container-wrapper">
+                <div>
+                    <h1>Hello professor..</h1>
+                </div>
+                <div>
+                    <p>To keep connected with us please login with your personal info</p>
+                </div>
+                <div class="aic">
+                    <button class="sign-in" onclick="window.location.href='signup.html'">
+                        Create Account
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="left-container">
+            <div class="wrapper-login">
+                <div class="aic">
+                    <h2>Sign In</h2>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="email" id="signin-email" placeholder="Email" autocomplete="email">
+                    </div>
+                    <div class="error-message" id="signin-error-email"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="password" id="signin-password" placeholder="Password" autocomplete="current-password">
+                    </div>
+                    <div class="error-message" id="signin-error-password"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="aic" style="justify-content: space-between;">
+                        <label style="font-size: 0.9rem; color: var(--primary-medium);">
+                            <input type="checkbox" id="remember-me" style="margin-right: 5px;">
+                            Remember me
+                        </label>
+                        <a href="#" style="font-size: 0.9rem; color: var(--primary-medium); text-decoration: none;">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
+
+                <div class="input-btn">
+                    <button class="signup" id="signin-btn">
+                         Sign In
+                    </button>
+                </div>
+
+                <div class="aic" style="margin-top: 2rem;">
+                    <p style="font-size: 0.9rem; color: var(--primary-medium);">
+                        Or sign in with
+                    </p>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const signinBtn = document.getElementById("signin-btn");
+            const emailInput = document.getElementById("signin-email");
+            const passwordInput = document.getElementById("signin-password");
+
+            // Add input event listeners for real-time validation
+            emailInput.addEventListener("input", validateEmail);
+            passwordInput.addEventListener("input", validatePassword);
+
+            signinBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                clearSigninErrors();
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                let hasError = false;
+
+                if (!validateEmail()) hasError = true;
+                if (!validatePassword()) hasError = true;
+
+                if (!hasError) {
+                    // Add loading state
+                    this.classList.add('loading');
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                        // Add success state to inputs
+                        emailInput.classList.add('success');
+                        passwordInput.classList.add('success');
+                        
+                        // Show success message
+                        alert("Sign In successful!");
+                        // Redirect to dashboard or home page
+                        // window.location.href = "dashboard.html";
+                    }, 1500);
+                }
+            });
+
+            function validateEmail() {
+                const email = emailInput.value.trim();
+                if (email === "") {
+                    showSigninError("signin-error-email", "Email is required");
+                    emailInput.classList.add('error');
+                    return false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showSigninError("signin-error-email", "Invalid email format");
+                    emailInput.classList.add('error');
+                    return false;
+                }
+                emailInput.classList.remove('error');
+                return true;
+            }
+
+            function validatePassword() {
+                const password = passwordInput.value.trim();
+                if (password === "") {
+                    showSigninError("signin-error-password", "Password is required");
+                    passwordInput.classList.add('error');
+                    return false;
+                } else if (password.length < 6) {
+                    showSigninError("signin-error-password", "Password must be at least 6 characters");
+                    passwordInput.classList.add('error');
+                    return false;
+                }
+                passwordInput.classList.remove('error');
+                return true;
+            }
+
+            function showSigninError(id, message) {
+                const errorDiv = document.getElementById(id);
+                errorDiv.textContent = message;
+                errorDiv.style.display = "block";
+            }
+
+            function clearSigninErrors() {
+                const errorDivs = document.querySelectorAll(".error-message");
+                errorDivs.forEach((div) => {
+                    div.textContent = "";
+                    div.style.display = "none";
+                });
+                emailInput.classList.remove('error', 'success');
+                passwordInput.classList.remove('error', 'success');
+            }
+        });
+    </script>
+</body>
+
+</html>
