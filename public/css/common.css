@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* DASHBOARD LAYOUT START */
+.root_parent {
+    height: 100vh;
+
+}
+
+.aside{
+    height: inherit;
+    width: 25%;
+}
+
+.main{
+    height: inherit;
+    width: 75%;
+}
+/* DASHBOARD LAYOUT END */
+
+
+/* FLEX STYLES START*/
+.df {
+    display: flex;
+}
+
+.jcc {
+    justify-content: center;
+}
+
+.aic {
+    align-items: center;
+}
+
+.jcsb {
+    justify-content: space-between;
+}
+
+
+/* FLEX STYLES END*/
