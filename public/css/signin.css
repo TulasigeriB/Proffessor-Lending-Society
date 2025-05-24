@@ -1,0 +1,103 @@
+*{margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.main-container{
+ background: #fff;
+    display: flex;
+      border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
+   
+}
+.right-container{
+width: 50%;
+background-color: black;
+color: white;
+}
+.right-container-wrapper{
+    padding: 100px 50px;
+
+}
+.wrapper-login{
+    width: 80%;
+
+}
+.left-container{
+    width: 50%;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
+.inputs{
+   
+    padding: 10px;
+}
+.inputs input{
+    padding: 12px 15px;
+     width: 100%;
+background-color: #eee;  
+border: none;  
+border-radius: 4px;
+  
+}
+
+.aic{
+    text-align: center;
+   margin-bottom: 20px;
+    font-weight: bold;
+}
+
+button{
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    
+  padding: 10px 0;
+    width: 90%;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+
+}
+.inputs input.input-placeholder-error::placeholder {
+    color: var(--error-color);
+}
+
+.input-btn{
+  text-align: center;
+  padding: 10px 0;
+}
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: .5px;
+  margin: 20px 0 30px;
+}
+.sign-in{
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+}
+.error-message {
+  display: none;
+  color: #d9534f;
+  font-size: 12px;
+  height: 16px; /* reserves space */
+  line-height: 16px;
+
+}
+
+

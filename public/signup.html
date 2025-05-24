@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Professor Lending Society</title>
+    <link rel="stylesheet" href="../css/signin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="right-container">
+            <div class="right-container-wrapper">
+                <div>
+                    <h1>Join Our Community</h1>
+                </div>
+                <div>
+                    <p>Create your account and start your journey with us</p>
+                </div>
+                <div class="aic">
+                    <button class="sign-in" onclick="window.location.href='signin.html'">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="left-container">
+            <div class="wrapper-login">
+                <div class="aic">
+                    <h2>Create Account</h2>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="text" id="signup-name" placeholder="Full Name" autocomplete="name">
+                    </div>
+                    <div class="error-message" id="signup-error-name"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="email" id="signup-email" placeholder="Email" autocomplete="email">
+                    </div>
+                    <div class="error-message" id="signup-error-email"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="tel" id="signup-phone" placeholder="Phone Number" autocomplete="tel">
+                    </div>
+                    <div class="error-message" id="signup-error-phone"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="text" id="signup-institution" placeholder="Institution Name">
+                    </div>
+                    <div class="error-message" id="signup-error-institution"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="text" id="signup-department" placeholder="Department">
+                    </div>
+                    <div class="error-message" id="signup-error-department"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="password" id="signup-password" placeholder="Password" autocomplete="new-password">
+                    </div>
+                    <div class="error-message" id="signup-error-password"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="inputs">
+                        <input type="password" id="signup-confirm-password" placeholder="Confirm Password"
+                            autocomplete="new-password">
+                    </div>
+                    <div class="error-message" id="signup-error-confirm-password"></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="aic" style="justify-content: flex-start;">
+                        <label style="font-size: 0.9rem; color: var(--primary-medium);">
+                            <input type="checkbox" id="terms" style="margin-right: 5px;">
+                            I agree to the <a href="#" style="color: var(--primary-dark);">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <div class="error-message" id="signup-error-terms"></div>
+                </div>
+
+                <div class="input-btn">
+                    <button class="signup" id="signup-btn">
+                        Create Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signup-btn').addEventListener('click', function () {
+            const fields = [
+                'signup-name',
+                'signup-email',
+                'signup-phone',
+                'signup-institution',
+                'signup-department',
+                'signup-password',
+                'signup-confirm-password'
+            ];
+
+            fields.forEach(id => {
+                const input = document.getElementById(id);
+                if (input.value.trim() === '') {
+                    input.classList.add('input-placeholder-error');
+                } else {
+                    input.classList.remove('input-placeholder-error');
+                }
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>
