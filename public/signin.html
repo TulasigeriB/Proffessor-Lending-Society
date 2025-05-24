@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Professor Lending Society</title>
-    <link rel="stylesheet" href="../css/signin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/signin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -42,7 +43,8 @@
 
                 <div class="input-group">
                     <div class="inputs">
-                        <input type="password" id="signin-password" placeholder="Password" autocomplete="current-password">
+                        <input type="password" id="signin-password" placeholder="Password"
+                            autocomplete="current-password">
                     </div>
                     <div class="error-message" id="signin-error-password"></div>
                 </div>
@@ -61,7 +63,7 @@
 
                 <div class="input-btn">
                     <button class="signup" id="signin-btn">
-                         Sign In
+                        Sign In
                     </button>
                 </div>
 
@@ -71,7 +73,7 @@
                     </p>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
@@ -100,14 +102,14 @@
                 if (!hasError) {
                     // Add loading state
                     this.classList.add('loading');
-                    
+
                     // Simulate API call
                     setTimeout(() => {
                         this.classList.remove('loading');
                         // Add success state to inputs
                         emailInput.classList.add('success');
                         passwordInput.classList.add('success');
-                        
+
                         // Show success message
                         alert("Sign In successful!");
                         // Redirect to dashboard or home page

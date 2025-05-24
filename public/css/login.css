@@ -27,6 +27,9 @@ h1 {
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
+input.error::placeholder {
+  color: red;
+}
 
 p {
   font-size: 14px;
