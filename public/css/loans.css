@@ -1,0 +1,69 @@
+.list_wrapper {
+    padding: 5px;
+
+}
+
+.list_item {
+    padding: 10px 15px;
+}
+
+.list_item:hover {
+    cursor: pointer;
+    background-color: #e5e5e5;
+}
+
+.list_selected {
+    background-color: #e5e5e5;
+}
+
+.list_val {
+    font-size: 17px;
+    line-height: 30px;
+}
+
+.list_selected .list_val {
+    font-weight: 600;
+}
+
+.status {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.stat_defaulted {
+    background-color: var(--status-defaulted);
+}
+
+.stat_pending {
+    background-color: var(--status-pending);
+}
+
+.stat_approved {
+    background-color: var(--status-approved);
+}
+
+.view_wrapper {
+    padding: 5px;
+    overflow: auto;
+}
+
+.view_status_btn {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.view_status_btn_pending {
+    border: 1px solid var(--bg-medium);
+    background-color: var(--bg-medium);
+}
+
+.view_status_btn_approved {
+    border: 1px solid var(--status-approved);
+    background-color: var(--status-approved);
+}
+
+.view_status_btn_defaulted {
+    border: 1px solid var(--status-defaulted);
+    background-color: var(--status-defaulted);
+}

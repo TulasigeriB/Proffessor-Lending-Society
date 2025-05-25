@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Professor Lending Society</title>
+    <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/signin.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -127,7 +128,7 @@
                 dataObj.dept = document.getElementById("department").value;
                 dataObj.password = document.getElementById("password").value;
                 console.log(dataObj);
-                
+
                 const settings = {
                     "async": true,
                     "crossDomain": true,
@@ -141,8 +142,9 @@
                 };
 
                 $.ajax(settings).done(function (response) {
-                    window.localStorage.setItem("member_id",response);
-                    window.location.href='dashboard.html';
+                    window.localStorage.clear();
+                    window.localStorage.setItem("memberDetails", JSON.stringify(response));
+                    window.location.href = 'dashboard.html';
                 });
             }
 

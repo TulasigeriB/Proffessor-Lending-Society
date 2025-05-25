@@ -1,0 +1,45 @@
+:root {
+    /* Color Variables */
+    --bg-lightest: #f8f9faff;
+    --bg-lighter: #e9ecefff;
+    --bg-light: #dee2e6ff;
+    --bg-medium-light: #ced4daff;
+    --bg-medium: #adb5bdff;
+    --bg-medium-dark: #6c757dff;
+    --bg-dark: #495057ff;
+    --bg-darker: #343a40ff;
+    --bg-darkest: #212529ff;
+
+    --primary-dark: var(--bg-darkest);
+    --primary-medium: var(--bg-dark);
+    --primary-light: var(--bg-medium-dark);
+
+    --secondary-light: var(--bg-lighter);
+    --secondary-medium: var(--bg-medium-light);
+    --secondary-dark: var(--bg-medium);
+
+    --btn-bg-primary: var(--bg-dark);
+    --btn-bg-primary-hover: var(--bg-medium-dark);
+    --btn-text-primary: var(--bg-lightest);
+
+    --btn-bg-secondary: var(--bg-medium);
+    --btn-bg-secondary-hover: var(--bg-medium-light);
+    --btn-text-secondary: var(--bg-darkest);
+
+    --placeholder-error-color: #EA4C89;
+    --placeholder-normal-color: #6c757d;
+
+    --status-pending:#BBC0C3;
+    --status-defaulted:#EA4C89;
+    --status-approved:#72A88D;
+
+    /* Other Variables */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

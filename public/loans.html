@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loans</title>
+    <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/var.css">
+    <link rel="stylesheet" href="./css/loans.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="root_parent df gap5">
+        <div class="aside df fdc gap5">
+            <div class="aside_header">
+                <p>
+                    Example Society
+                </p>
+            </div>
+            <div class="aside_body df fdc jcsb fg1">
+                <div class="aside_option_holder">
+                    <div class="aside_options">
+                        <p>Dashboard</p>
+                    </div>
+                    <div class="aside_options aside_options_selected">
+                        <p>Loans</p>
+                    </div>
+                    <div class="aside_options">
+                        <p>Transactions</p>
+                    </div>
+                    <div class="aside_options">
+                        <p>Committee</p>
+                    </div>
+                </div>
+                <div class="df aic jcsb aside_footer">
+                    <div class="">
+                        <p id="userName">UserName</p>
+                    </div>
+                    <div>
+                        <div class="icons_wrapper">
+                            <img src="./icons/logout.png" class="icon" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main df fdc">
+            <div class="main_header df aic gap5">
+                <div>
+                    <a href="dashboard-admin.html">
+                        Dashboard
+                    </a>
+                </div>
+                <div class="bc_icon">
+                    <img src="./icons/right.png" class="icon" alt="right">
+                </div>
+                <div>
+                    <a href="loans.html">
+                        Loans
+                    </a>
+                </div>
+            </div>
+
+            <div class="df fg1">
+                <div style="width: 40%; padding: 5px;border-right: 1px solid black;">
+                    <div>
+                        <p style="font-size: 18px; font-weight: 600;">
+                            List of Loans
+                        </p>
+                    </div>
+                    <div class="list_wrapper df fdc gap5" id="listWrapper">
+                        <div class="list_item df fdc gap5 list_selected">
+                            <div class="df aic jcsb">
+                                <div>
+                                    <p style="font-size: 18px; font-weight: 600;">01</p>
+                                </div>
+                                <div>
+                                    <div class="status stat_pending"></div>
+                                </div>
+                            </div>
+                            <div class="df aic jcsb">
+                                <div>
+                                    <div>
+                                        <p style="line-height: 20px;">Amount</p>
+                                    </div>
+                                    <div>
+                                        <p class="list_val">₹ 10000</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p style="line-height: 20px;">Applied On</p>
+                                    </div>
+                                    <div>
+                                        <p class="list_val">13/04/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list_item df fdc gap5 ">
+                            <div class="df aic jcsb">
+                                <div>
+                                    <p style="font-size: 18px; font-weight: 600;">01</p>
+                                </div>
+                                <div>
+                                    <div class="status stat_rejected"></div>
+                                </div>
+                            </div>
+                            <div class="df aic jcsb">
+                                <div>
+                                    <div>
+                                        <p style="line-height: 20px;">Amount</p>
+                                    </div>
+                                    <div>
+                                        <p class="list_val">₹ 10000</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p style="line-height: 20px;">Applied On</p>
+                                    </div>
+                                    <div>
+                                        <p class="list_val">13/04/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list_item df fdc gap5">
+                            <div class="df aic jcsb">
+                                <div>
+                                    <p style="font-size: 18px; font-weight: 600;">01</p>
+                                </div>
+                                <div>
+                                    <div class="status stat_accepted"></div>
+                                </div>
+                            </div>
+                            <div class="df aic jcsb">
+                                <div>
+                                    <div>
+                                        <p style="line-height: 20px;">Amount</p>
+                                    </div>
+                                    <div>
+                                        <p class="list_val">₹ 10000</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p style="line-height: 20px;">Applied On</p>
+                                    </div>
+                                    <div>
+                                        <p class="list_val">13/04/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 60%;  padding: 5px;">
+                    <div>
+                        <p style="font-size: 18px; font-weight: 600;">
+                            Details of the Loan
+                        </p>
+                    </div>
+                    <div class="view_wrapper df fdc gap20" id="viewWrapper">
+                        <!-- <div style="width: 90%; padding: 30px;">
+                            <img src="./illustrator/select something.png" class="icon" alt="">
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="font-size: 20px;">
+                                Select a loan to view its details.
+                            </p>
+                        </div> -->
+                        <div class="df jcsb aic">
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Loan Amount requested</p>
+                                </div>
+                                <div>
+                                    <p class="list_val ">₹ 15000</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Interest per Annum(%)</p>
+                                </div>
+                                <div>
+                                    <p class="list_val">10.5</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Monthly EMI</p>
+                                </div>
+                                <div>
+                                    <p class="list_val">10.5</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="padding: 10px; border-radius: 5px; border: 1px solid var(--bg-medium); background-color: var(--bg-medium);">Pending</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p style="color: var(--bg-darker);">Purpose</p>
+                            </div>
+                            <div>
+                                <p class="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias, aspernatur iusto possimus hic pariatur voluptate ad quae velit perspiciatis eos sint ipsam nulla accusamus odit id! Molestiae similique consectetur voluptas!</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p style="color: var(--bg-darker);">Applied on</p>
+                            </div>
+                            <div>
+                                <p class="list_val">12/03/2025</p>
+                            </div>
+                        </div>
+                        <div class="df fdc gap20">
+                            <div style="margin-bottom: 5px;">
+                                <p style="font-size: 18px;">Collateral details</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Collateral type</p>
+                                </div>
+                                <div>
+                                    <p class="list_val">vehicle</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Collateral address</p>
+                                </div>
+                                <div>
+                                    <p class="list_val">vehicle</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Collateral number</p>
+                                </div>
+                                <div>
+                                    <p class="list_val">vehicle</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <p style="color: var(--bg-darker);">Collateral details</p>
+                                </div>
+                                <div>
+                                    <p class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto dicta natus voluptatum adipisci optio dignissimos, laborum placeat enim temporibus vero? Tenetur ipsam qui eum suscipit doloremque magnam nihil fuga accusamus?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function fetchViewDetails(ele) {
+            let listItems = document.querySelectorAll(".list_item");
+            listItems.forEach(listItem => {
+                listItem.classList.remove("list_selected");
+            });
+
+            debugger
+
+            ele.classList.add("list_selected");
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://localhost:3000/api/loan/" + ele.getAttribute("data-id"),
+                "method": "GET",
+                "headers": {}
+            };
+
+            $.ajax(settings).done(function (loan) {
+                console.log(loan);
+                if (loan.length > 0) {
+                    $("#viewWrapper").empty();
+
+                    loan.forEach(l => {
+                        $("#viewWrapper").append(
+                            '<div class="df jcsb aic">' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Loan Amount requested</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="list_val ">₹ ' + l.amount + '</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Interest per Annum(%)</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="list_val">' + l.interest_rate + '</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Monthly EMI</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="list_val">' + l.emi + '</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div class="view_status_btn view_status_btn_' + l.status + '">' + l.status + '</div>' +
+                            '    </div>' +
+                            '</div>' +
+                            '<div>' +
+                            '    <div>' +
+                            '        <p style="color: var(--bg-darker);">Purpose</p>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <p class="">' + l.purpose + '</p>' +
+                            '    </div>' +
+                            '</div>' +
+                            '<div>' +
+                            '    <div>' +
+                            '        <p style="color: var(--bg-darker);">Applied on</p>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <p class="list_val">' + l.application_date + '</p>' +
+                            '    </div>' +
+                            '</div>' +
+                            '<div class="df fdc gap20">' +
+                            '    <div style="margin-bottom: 5px;">' +
+                            '        <p style="font-size: 18px;">Collateral details</p>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Collateral type</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="list_val">' + l.collateral_type + '</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Collateral address</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="list_val">' + l.collateral_address + '</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Collateral number</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="list_val">' + l.collateral_number + '</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div>' +
+                            '        <div>' +
+                            '            <p style="color: var(--bg-darker);">Collateral details</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <p class="">'+l.collateral_details+'</p>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '</div>'
+                        );
+                    })
+
+                }
+            });
+
+        }
+        window.addEventListener("DOMContentLoaded", () => {
+            let memberDetails = JSON.parse(window.localStorage.getItem("memberDetails"));
+            let id = memberDetails.member_id;
+            $("#userName").text(memberDetails.name);
+
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://localhost:3000/api/loans/" + id,
+                "method": "GET",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "processData": false
+            };
+
+            $.ajax(settings).done(function (loans) {
+                console.log(loans);
+
+                if (loans.length > 0) {
+                    $("#listWrapper").empty();
+                    loans.forEach((loan, i) => {
+
+                        $("#listWrapper").append(
+                            '<div class="list_item df fdc gap5" data-id="' + loan.loan_id + '" onclick="fetchViewDetails(this)">' +
+                            '    <div class="df aic jcsb">' +
+                            '        <div>' +
+                            '            <p style="font-size: 18px; font-weight: 600;">' + (i + 1) + '</p>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <div class="status stat_' + loan.status + '"></div>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '    <div class="df aic jcsb">' +
+                            '        <div>' +
+                            '            <div>' +
+                            '                <p style="line-height: 20px; color: var(--bg-darker);">Amount</p>' +
+                            '            </div>' +
+                            '            <div>' +
+                            '                <p class="list_val">' + loan.amount + '</p>' +
+                            '            </div>' +
+                            '        </div>' +
+                            '        <div>' +
+                            '            <div>' +
+                            '                <p style="line-height: 20px; color: var(--bg-darker);">Applied On</p>' +
+                            '            </div>' +
+                            '            <div>' +
+                            '                <p class="list_val">' + loan.application_date + '</p>' +
+                            '            </div>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '</div>'
+                        );
+                    });
+
+                }
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

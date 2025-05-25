@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Professor Lending Society</title>
+    <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/signin.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -77,42 +78,37 @@
             emailInput.addEventListener("input", validateEmail);
             passwordInput.addEventListener("input", validatePassword);
 
-            signinBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                // clearSigninErrors();
 
-                const email = emailInput.value.trim();
-                const password = passwordInput.value.trim();
-                let hasError = false;
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            let hasError = false;
 
-                if (!validateEmail()) hasError = true;
-                if (!validatePassword()) hasError = true;
+            if (!validateEmail()) hasError = true;
+            if (!validatePassword()) hasError = true;
 
-                if (!hasError) {
+            if (!hasError) {
 
-                    // Add loading state
-                    this.classList.add('loading');
-                    const settings = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": "http://localhost:3000/api/auth/login",
-                        "method": "POST",
-                        "headers": {
-                            "Content-Type": "application/json"
-                        },
-                        "processData": false,
-                        "data": JSON.stringify({ email: email, password: password })
-                    };
+                // Add loading state
+                const settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://localhost:3000/api/auth/login",
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "processData": false,
+                    "data": JSON.stringify({ email: email, password: password })
+                };
 
-                    $.ajax(settings).done(function (response) {
-                        console.log(response);
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
 
-                        window.localStorage.clear();
-                        window.localStorage.setItem("memberDetails",response);
-                        window.location.href="./dashboard.html";
-                    });
-                }
-            });
+                    window.localStorage.clear();
+                    window.localStorage.setItem("memberDetails", JSON.stringify(response));
+                    window.location.href = "./dashboard.html";
+                });
+            }
 
             function validateEmail() {
                 const email = emailInput.value.trim();

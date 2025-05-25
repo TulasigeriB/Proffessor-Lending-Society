@@ -37,10 +37,25 @@ export async function register(details) {
             if (err) {
                 reject(err);
             } else {
+                
                 resolve(id);
             }
         });
     });
+}
+
+export async function getUserById(params) {
+    return new Promise(async (resolve, reject) => {
+        let query = `SELECT * FROM Members where member_id='${params}'`;
+
+        connection.query(query, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result.length > 0 ? result[0] : "username not found");
+            }
+        })
+    })
 }
 
 export async function login(credentials) {
@@ -60,6 +75,18 @@ export async function login(credentials) {
 export async function getLoansById(params) {
     return new Promise(async (resolve, reject) => {
         let query = `SELECT * FROM Loans where member_id='${params.id}'`;
+
+        connection.query(query, (error, result) => {
+            if (error)
+                reject(error)
+            else
+                resolve(result);
+        });
+    })
+}
+export async function getLoansByLoanId(params) {
+    return new Promise(async (resolve, reject) => {
+        let query = `SELECT * FROM Loans where loan_id='${params.id}'`;
 
         connection.query(query, (error, result) => {
             if (error)

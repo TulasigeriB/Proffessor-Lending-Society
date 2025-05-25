@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 
-import { getLoansById, login, register, getLoans, createLoan, createLoanRepayment, buyShare, adminLogin } from './db/db.js'
+import { getLoansById,getLoansByLoanId, login, register, getLoans, createLoan, createLoanRepayment, buyShare, adminLogin, getUserById } from './db/db.js'
 
 dotenv.config();
 
@@ -65,7 +65,8 @@ app.post("/api/admin/login", async (req, res) => {
 app.post("/api/auth/register", async (req, res) => {
     try {
         let loginDetails = await register(req.body);
-        res.status(200).send(loginDetails);
+        let user = await getUserById(loginDetails);
+        res.status(200).send(user);
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
@@ -102,6 +103,15 @@ app.post
 app.get("/api/loans/:id", async (req, res) => {
     try {
         let loans = await getLoansById(req.params);
+        res.status(200).send(loans);
+    } catch (error) {
+        res.status(500).send("error while fetching loans");
+    }
+});
+
+app.get("/api/loan/:id", async (req, res) => {
+    try {
+        let loans = await getLoansByLoanId(req.params);
         res.status(200).send(loans);
     } catch (error) {
         res.status(500).send("error while fetching loans");

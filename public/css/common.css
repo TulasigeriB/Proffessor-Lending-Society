@@ -17,7 +17,7 @@
 .root_parent {
     padding: 5px;
     height: 100vh;
-    background-color: #b6b6b6;
+    background-color: var(--bg-medium-light);
 }
 
 /* ASIDE STYLES START */
@@ -34,12 +34,16 @@
 }
 
 .aside_header p {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 .aside_options {
     padding: 10px;
+}
+
+.aside_options p {
+    font-size: 18px;
 }
 
 .aside_options_selected {
@@ -50,7 +54,7 @@
 
 .aside_options:hover {
     cursor: pointer;
-    background-color: rgb(143, 143, 143);
+    background-color: var(--bg-medium-dark);
 }
 
 .aside_footer {
@@ -63,8 +67,12 @@
     transition: all ease 0.3s;
 }
 
+.bc_icon {
+    width: 20px;
+}
+
 .icons_wrapper:hover {
-    background-color: #b6b6b6;
+    background-color: var(--bg-medium-light);
     transform: scale(1.05);
     cursor: pointer;
 }
@@ -86,6 +94,7 @@
 a {
     color: #000000;
     text-decoration: none;
+    font-size: 20px;
 }
 
 /* CARDS STYLES START */
@@ -188,7 +197,7 @@ a {
 }
 
 .gap20 {
-    /* gap: 20px; */
+    gap: 20px;
 }
 
 /* FLEX STYLES END*/
