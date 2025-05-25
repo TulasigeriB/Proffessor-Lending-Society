@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/dashboard.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -22,10 +21,10 @@
             </div>
             <div class="aside_body df fdc jcsb fg1">
                 <div class="aside_option_holder">
-                    <div class="aside_options aside_options_selected">
+                    <div class="aside_options aside_options_selected" >
                         <p>Dashboard</p>
                     </div>
-                    <div class="aside_options" onclick="navigate('loans')">
+                    <div class="aside_options">
                         <p>Loans</p>
                     </div>
                     <div class="aside_options">
@@ -57,20 +56,203 @@
             </div>
 
             <div class="grid_box">
-                <div class="item item1">1</div>
-                <div class="item item2">2</div>
-                <div class="item item3">3</div>
-                <div class="item item4">4</div>
-                <div class="item item5">5</div>
-                <div class="item item6">6</div>
-                <div class="item item7">7</div>
-                <div class="item item8">8</div>
-                <div class="item item9">9</div>
+                <div class="item item1">
+                    <div>
+                        <p>Current MRP</p>
+                    </div>
+                    <div>
+                        <p>1400</p>
+                    </div>
+
+                </div>
+                <div class="item item2">
+                    <div class="p-tag">
+                        <p>Current MRP</p>
+                    </div>
+                    <div>
+                        <p>1400</p>
+                    </div>
+
+                </div>
+                <div class="item item3">
+                    <div class="p-tag">
+                        <p>Current MRP</p>
+                    </div>
+                    <div>
+                        <p>1400</p>
+                    </div>
+
+                </div>
+                <div class="item item4">
+                    <div class="p-tag">
+                        <p>Current MRP</p>
+                    </div>
+                    <div>
+                        <p>1400</p>
+                    </div>
+
+                </div>
+                <div class="item item5">
+                    <canvas id="fundsLineChart"></canvas>
+                </div>
+
+                <div class="item item6"><canvas id="sharesPieChart1"></canvas></div>
+                <div class="item item7"><canvas id="sharesPieChart2"></canvas></div>
+                <div class="item item8">
+                    <div>
+                        <p>Transactions</p>
+                    </div>
+                    <div class="df1">
+                        <div>
+                            <p>evergreen</p>
+                        </div>
+                        <div>
+                            <p>1200</p>
+                        </div>
+                    </div>
+                    <div class="df1">
+                        <div>
+                            <p>evergreen</p>
+                        </div>
+                        <div>
+                            <p>1200</p>
+                        </div>
+                    </div>
+                    <div class="df1">
+                        <div>
+                            <p>evergreen</p>
+                        </div>
+                        <div>
+                            <p>1200</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="./js/navigate.js"></script>
+    <script>
+        // PIE CHART 1 — Shares Distribution
+        const ctxPie = document.getElementById('sharesPieChart1').getContext('2d');
+
+        const sharesPieChart1 = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Owned', 'Available', 'Reserved'],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: ['#222', '#888', '#ddd'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // ✅ Crucial for filling container
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#222',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // PIE CHART 2 — Another Share View
+        const pieCtx2 = document.getElementById('sharesPieChart2').getContext('2d');
+
+        new Chart(pieCtx2, {
+            type: 'pie',
+            data: {
+                labels: ['Owned Shares', 'Remaining Shares'],
+                datasets: [{
+                    label: 'Share Distribution',
+                    data: [500, 500],
+                    backgroundColor: ['#333', '#bbb'], // Dark + light gray
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // ⬅️ Fill the container
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const value = context.parsed;
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${context.label}: ${value} shares (${percentage}%)`;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 15,
+                            color: '#222' // Dark text
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // LINE CHART — Funds Trend
+        const ctx = document.getElementById('fundsLineChart').getContext('2d');
+
+        const fundsLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Funds Over Time',
+                    data: [1200, 1400, 1300, 1500, 1700, 1650],
+                    borderColor: '#222222',  // dark line
+                    backgroundColor: 'rgba(34, 34, 34, 0.1)', // subtle fill
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointBackgroundColor: '#222222',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: { color: '#444' }, // dark text
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    y: {
+                        ticks: { color: '#444' },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: '#333' }
+                    }
+                }
+            }
+        });
+
+
+
+
+    </script>
+
+
+
 </body>
 
 </html>

@@ -19,6 +19,12 @@
 .inputs input.input-placeholder-error::placeholder {
     color: var(--error-color);
 }
+.error-message {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
 
 * {
     margin: 0;

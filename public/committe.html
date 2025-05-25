@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Committee Card</title>
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      
+    }
+
+    .commitee-container {
+      padding: 20px;
+      max-width: 400px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .comm-cards {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 200px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .comm-cards:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .label {
+      font-size: 13px;
+      color: #000000;
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-size: 17px;
+      font-weight: 500;
+      color: #444444;
+    }
+  </style>
+</head>
+<body>
+  <div class="commitee-container">
+    <div class="comm-cards">
+      <div class="card-item">
+        <p class="label">Name</p>
+        <p class="value">Vijay</p>
+      </div>
+      <div class="card-item">
+        <p class="label">Role</p>
+        <p class="value">Member</p>
+      </div>
+      <div class="card-item">
+        <p class="label">Start Date</p>
+        <p class="value">11/09/2003</p>
+      </div>
+      <div class="card-item">
+        <p class="label">End Date</p>
+        <p class="value">--</p>
+      </div>
+      <div class="card-item">
+        <p class="label">Status</p>
+        <p class="value">Active</p>
+      </div>
+    </div>
+    <div class="comm-cards">
+      <div class="card-item">
+        <p class="label">Name</p>
+        <p class="value">Vijay</p>
+      </div>
+      <div class="card-item">
+        <p class="label">Role</p>
+        <p class="value">Member</p>
+      </div>
+      <div class="card-item">
+        <p class="label">Start Date</p>
+        <p class="value">11/09/2003</p>
+      </div>
+      <div class="card-item">
+        <p class="label">End Date</p>
+        <p class="value">--</p>
+      </div>
+      <div class="card-item">
+        <p class="label">Status</p>
+        <p class="value">Active</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

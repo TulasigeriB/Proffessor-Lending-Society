@@ -1,0 +1,303 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #222;
+    height: 100vh;
+}
+
+.root_parent {
+  
+    background-color: #f4f6f8;
+}
+
+/* Sidebar */
+.aside {
+    width: 250px;
+    background: #fff;
+    color: #181c20;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 2px 0 16px rgba(30,32,37,0.04);
+    height: 100vh;
+}
+
+.aside_header {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.aside_options {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.08rem;
+    color: #222;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.aside_options_selected, .aside_options:hover {
+    background: #e5e8ec;
+    color: #181c20;
+    font-weight: 700;
+}
+
+.aside_footer {
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #ececec;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icons_wrapper {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e8ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.icons_wrapper img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+.icons_wrapper:hover {
+    background: #d1d5db;
+}
+.icon {
+    width: 18px;
+    height: 18px;
+    filter: grayscale(1);
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    background: #f4f6f8;
+    overflow-y: scroll;
+    
+}
+
+.main_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.2rem;
+    background: #e5e8ec;
+    border-radius: 14px;
+    padding: 1.2rem 2rem;
+}
+
+.main_header a {
+    color: #181c20;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Placeholder for search bar and avatar */
+.main_header::after {
+    content: '';
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    
+    border-radius: 50%;
+    margin-left: 1.5rem;
+}
+
+/* Grid Layout */
+.grid_box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 120px 260px 180px;
+    gap: 28px;
+    padding: 32px;
+    background: rgba(245, 247, 250, 0.7);
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(60, 60, 120, 0.08);
+    backdrop-filter: blur(2px);
+    animation: fadeInGrid 1.2s cubic-bezier(.4,0,.2,1);
+    grid-template-areas:
+        "item1 item2 item3 item4"
+        "item5 item5 item6 item7"
+        "item8 item8 item8 item8";
+        height: 
+        100vh;
+       
+       
+}
+
+.item1 { grid-area: item1; }
+.item2 { grid-area: item2; }
+.item3 { grid-area: item3; }
+.item4 { grid-area: item4; }
+.item5 { grid-area: item5; }
+.item6 { grid-area: item6; }
+.item7 { grid-area: item7; }
+.item8 { grid-area: item8; }
+
+/* Stat Cards */
+.item1, .item2, .item3, .item4 {
+    background: #e9ecef;
+    color: #222;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgba(30,32,37,0.04);
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  
+    justify-content: center;
+    align-items: flex-start;
+}
+.item1 p:first-child, .item2 p:first-child, .item3 p:first-child, .item4 p:first-child {
+    font-size: 1rem;
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Chart & Card Items */
+.item5, .item7 {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(30,32,37,0.04);
+    padding: 2rem 2rem 1.5rem 2rem;
+  
+  
+   
+}
+.item6{
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(30,32,37,0.04);
+}
+.item8{
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(30,32,37,0.04);
+    max-width: 450px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.item9 {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(30,32,37,0.04);
+    padding: 2rem 1.2rem;
+    grid-column: span 4;
+    text-align: center;
+    color: #7b7f87;
+    font-style: italic;
+}
+
+/* Transaction List */
+.df1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #ececec;
+    font-size: 1.05rem;
+    color: #222;
+}
+.df1:last-child {
+    border-bottom: none;
+}
+.df1:hover {
+    background: #f4f6f8;
+}
+
+/* Pills/Buttons */
+.pill {
+    display: inline-block;
+    padding: 0.2em 0.9em;
+    background: #e5e8ec;
+    color: #222;
+    border-radius: 999px;
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-left: 0.5em;
+    border: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .grid_box {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-template-areas: none;
+        padding: 12px;
+        gap: 16px;
+    }
+    .item1, .item2, .item3, .item4,
+    .item5, .item6, .item7, .item8 {
+        grid-area: unset;
+    }
+}
+@media (max-width: 768px) {
+    .aside {
+        width: 100px;
+        padding: 1rem 0.5rem;
+    }
+    .main {
+        padding: 1rem;
+    }
+}
+
+/* Chart & Card Items - more padding, larger titles */
+.item5 > div > p:first-child, .item6 > div > p:first-child, .item7 > div > p:first-child, .item8 > div > p:first-child {
+    font-size: 1.2rem;
+    font-weight: 700;
+   
+}
+
+/* Transaction Button */
+.item8 button, .item8 .view-all-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    background: #e9ecef;
+    border: none;
+    color: #222;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.item8 button:hover, .item8 .view-all-btn:hover {
+    background: #dbe1e7;
+}
