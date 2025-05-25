@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Share Management</title>
+    <link rel="stylesheet" href="./css/var.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="share-dashboard">
+        <!-- Share Summary Section -->
+        <div class="summary-card">
+            <h2>Share Holdings Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="label">Total Shares</span>
+                    <span id="totalShares" class="value">0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Current Share Price</span>
+                    <span id="currentSharePrice" class="value">₹0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Total Value</span>
+                    <span id="totalValue" class="value">₹0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Profit/Loss</span>
+                    <span id="profitLoss" class="value">₹0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Price Chart -->
+        <div class="chart-container">
+            <canvas id="sharePriceChart"></canvas>
+        </div>
+
+        <!-- Share Transaction Section -->
+        <div class="transaction-section">
+            <div class="purchase-form">
+                <h3>Buy Shares</h3>
+                <form id="sharesPurchaseForm">
+                    <div class="form-group">
+                        <input type="number" id="shareCount" min="1" placeholder="Number of Shares">
+                        <span id="totalAmount">Total: ₹0</span>
+                    </div>
+                    <button type="submit" class="btn-primary">Purchase Shares</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Share History Table -->
+        <div class="history-section">
+            <h3>Share Transaction History</h3>
+            <table id="shareHistory">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Shares</th>
+                        <th>Price/Share</th>
+                        <th>Total Value</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./js/shares.js"></script>
+</body>
+</html>

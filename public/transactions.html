@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="./css/var.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/transactions.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="root_parent df gap5">
+        <div class="aside df fdc gap5">
+            <div class="aside_header">
+                <p>
+                    Example Society
+                </p>
+            </div>
+            <div class="aside_body df fdc jcsb fg1">
+                <div class="aside_option_holder">
+                    <div class="aside_options" onclick="navigate('dashboard')">
+                        <p>Dashboard</p>
+                    </div>
+                    <div class="aside_options " onclick="navigate('loans')">
+                        <p>Loans</p>
+                    </div>
+                    <div class="aside_options aside_options_selected"  onclick="navigate('transactions')">
+                        <p>Transactions</p>
+                    </div>
+                    <div class="aside_options" onclick="navigate('committe')">
+                        <p>committe</p>
+                    </div>
+                </div>
+                <div class="df aic jcsb aside_footer">
+                    <div class="">
+                        <p id="userName">UserName</p>
+                    </div>
+                    <div>
+                        <div class="icons_wrapper">
+                            <img src="./icons/logout.png" class="icon" alt="" onclick="handleLogout()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="df aic gap5">
+                <div>
+                    <a href="dashboard-admin.html">
+                        Dashboard
+                    </a>
+                </div>
+                <div class="bc_icon">
+                    <img src="./icons/right.png" class="icon" alt="right">
+                </div>
+                <div>
+                    <a>
+                        Transactions
+                    </a>
+                </div>
+            </div>
+
+            <div class="transaction_container">
+                <div class="filter_section df gap5">
+                    <select id="typeFilter" class="filter_input">
+                        <option value="all">All Transactions</option>
+                        <option value="loan">Loan</option>
+                        <option value="share">Share</option>
+                        <option value="repayment">Repayment</option>
+                    </select>
+                    <input type="date" id="dateFilter" class="filter_input">
+                </div>
+
+                <div class="transaction_list">
+                    <table id="transactionsTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transaction ID</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/navigate.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/transactions.js"></script>
+</body>
+
+</html>

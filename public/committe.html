@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Committee Card</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loans</title>
+  <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/var.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    /* Base Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: #f0f2f5;
-      
-    }
-
     .commitee-container {
       padding: 20px;
       max-width: 400px;
@@ -60,52 +52,122 @@
     }
   </style>
 </head>
+
 <body>
-  <div class="commitee-container">
-    <div class="comm-cards">
-      <div class="card-item">
-        <p class="label">Name</p>
-        <p class="value">Vijay</p>
+  <div class="root_parent df gap5">
+    <div class="aside df fdc gap5">
+      <div class="aside_header">
+        <p>
+          Example Society
+        </p>
       </div>
-      <div class="card-item">
-        <p class="label">Role</p>
-        <p class="value">Member</p>
-      </div>
-      <div class="card-item">
-        <p class="label">Start Date</p>
-        <p class="value">11/09/2003</p>
-      </div>
-      <div class="card-item">
-        <p class="label">End Date</p>
-        <p class="value">--</p>
-      </div>
-      <div class="card-item">
-        <p class="label">Status</p>
-        <p class="value">Active</p>
+      <div class="aside_body df fdc jcsb fg1">
+        <div class="aside_option_holder">
+          <div class="aside_options" onclick="navigate('dashboard')">
+            <p>Dashboard</p>
+          </div>
+          <div class="aside_options aside_options_selected" onclick="navigate('loans')">
+            <p>Loans</p>
+          </div>
+          <div class="aside_options" onclick="navigate('transactions')">
+            <p>Transactions</p>
+          </div>
+          <div class="aside_options" onclick="navigate('committe')">
+            <p>committe</p>
+          </div>
+        </div>
+        <div class="df aic jcsb aside_footer">
+          <div class="">
+            <p id="userName">UserName</p>
+          </div>
+          <div>
+            <div class="icons_wrapper">
+              <img src="./icons/logout.png" class="icon" alt="">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="comm-cards">
-      <div class="card-item">
-        <p class="label">Name</p>
-        <p class="value">Vijay</p>
+    <div class="main df fdc">
+      <div class="main_header df aic jcsb">
+
+        <div class="df aic gap5">
+          <div>
+            <a href="dashboard-admin.html">
+              Dashboard
+            </a>
+          </div>
+          <div class="bc_icon">
+            <img src="./icons/right.png" class="icon" alt="right">
+          </div>
+          <div>
+            <a href="loans.html">
+              committe
+            </a>
+          </div>
+        </div>
+        <div>
+          <button class="signup" onclick="navigate('loanpage')">
+            Request loan
+          </button>
+        </div>
       </div>
-      <div class="card-item">
-        <p class="label">Role</p>
-        <p class="value">Member</p>
-      </div>
-      <div class="card-item">
-        <p class="label">Start Date</p>
-        <p class="value">11/09/2003</p>
-      </div>
-      <div class="card-item">
-        <p class="label">End Date</p>
-        <p class="value">--</p>
-      </div>
-      <div class="card-item">
-        <p class="label">Status</p>
-        <p class="value">Active</p>
+
+      <div class="">
+        <div class="commitee-container">
+          <div class="comm-cards">
+            <div class="card-item">
+              <p class="label">Name</p>
+              <p class="value">Vijay</p>
+            </div>
+            <div class="card-item">
+              <p class="label">Role</p>
+              <p class="value">Member</p>
+            </div>
+            <div class="card-item">
+              <p class="label">Start Date</p>
+              <p class="value">11/09/2003</p>
+            </div>
+            <div class="card-item">
+              <p class="label">End Date</p>
+              <p class="value">--</p>
+            </div>
+            <div class="card-item">
+              <p class="label">Status</p>
+              <p class="value">Active</p>
+            </div>
+          </div>
+          <div class="comm-cards">
+            <div class="card-item">
+              <p class="label">Name</p>
+              <p class="value">Vijay</p>
+            </div>
+            <div class="card-item">
+              <p class="label">Role</p>
+              <p class="value">Member</p>
+            </div>
+            <div class="card-item">
+              <p class="label">Start Date</p>
+              <p class="value">11/09/2003</p>
+            </div>
+            <div class="card-item">
+              <p class="label">End Date</p>
+              <p class="value">--</p>
+            </div>
+            <div class="card-item">
+              <p class="label">Status</p>
+              <p class="value">Active</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <script src="./js/navigate.js"></script>
+
+  <script>
+
+  </script>
 </body>
+
 </html>

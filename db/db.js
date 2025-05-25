@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
-let connection = mysql.createConnection({
+export let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -27,6 +27,29 @@ async function hashPassword(password) {
         throw err;
     }
 }
+
+export async function getLoanDefaults() {
+    return new Promise(async (resolve, reject) => {
+        let query = `SELECT * FROM LoanConfigurations;`;
+        connection.query(query, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                if (result.length > 0) {
+                    resolve(result);
+                } else {
+                    resolve({
+                        maxLoanAmount: 1000000,
+                        maxLoanInterest: 15,
+                        maxLoanDuration: 60,
+                        minSharePrice: 100,
+                        maxSharePrice: 10000
+                    });
+                }
+            }
+        });
+    });
+}       
 
 export async function register(details) {
     return new Promise(async (resolve, reject) => {

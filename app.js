@@ -3,9 +3,8 @@ import http from 'http';
 import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import bcrypt from 'bcrypt';
 
-import { getLoansById,getLoansByLoanId, login, register, getLoans, createLoan, createLoanRepayment, buyShare, adminLogin, getUserById } from './db/db.js'
+import { getLoansById, getLoansByLoanId, getLoanDefaults, login, register, getLoans, createLoan, createLoanRepayment, buyShare, adminLogin, getUserById, connection } from './db/db.js'
 
 dotenv.config();
 
@@ -158,6 +157,76 @@ app.post("/api/share/buy", async (req, res) => {
 });
 // END OF THE SHARES RELATED ENDPOINTS
 
+app.get("/api/loan-defaults", async (req, res) => {
+    try {
+        let getDefaults = await getLoanDefaults();
+        res.status(200).json(getDefaults);
+    } catch (error) {
+        res.status(500).send("Error fetching loan defaults");
+    }
+});
+app.get("/api/dashboard/summary", async (req, res) => {
+    try {
+        const [
+            [sharePriceRow],
+            [totalSharesRow],
+            [fundRow],
+            fundsHistoryRows,
+            [ownedRow],
+            [reservedRow],
+            [availableRow],
+            transactionsRows
+        ] =await Promise.all([
+            connection.query(`SELECT current_price FROM Shares ORDER BY purchase_date DESC LIMIT 1`),
+            connection.query(`SELECT SUM(share_count) as total FROM Members WHERE status='active'`),
+            connection.query(`SELECT total_value, available_funds, emergency_reserve FROM Fund ORDER BY update_date DESC LIMIT 1`),
+            connection.query(`SELECT DATE_FORMAT(update_date, '%b') as month, total_value FROM Fund ORDER BY update_date`),
+            connection.query(`SELECT SUM(share_count) as owned FROM Members WHERE status='active'`),
+            connection.query(`SELECT emergency_reserve FROM Fund ORDER BY update_date DESC LIMIT 1`),
+            connection.query(`SELECT available_funds FROM Fund ORDER BY update_date DESC LIMIT 1`),
+            connection.query(`SELECT t.type, t.amount, m.name FROM Transactions t LEFT JOIN Members m ON t.member_id = m.member_id ORDER BY t.transaction_date DESC LIMIT 5`)
+        ]);
+        
+        const sharePrice = sharePriceRow ? sharePriceRow.current_price : 0;
+        const totalShareHoldings = totalSharesRow ? totalSharesRow.total : 0;
+        const currentMRP = sharePrice;
+        const fund = fundRow || {};
+        const fundsHistory = fundsHistoryRows || [];
+        const shareDistribution = {
+            owned: ownedRow ? ownedRow.owned : 0,
+            reserved: reservedRow ? reservedRow.emergency_reserve : 0,
+            available: availableRow ? availableRow.available_funds : 0
+        };
+        const transactions = transactionsRows || [];
+
+        res.json({
+            sharePrice,
+            totalShareHoldings,
+            currentMRP,
+            fund,
+            fundsHistory,
+            shareDistribution,
+            transactions
+        });
+
+        res.json({
+            sharePrice: sharePrice ? sharePrice.current_price : 0,
+            totalShareHoldings: totalShares ? totalShares.total : 0,
+            currentMRP,
+            fund,
+            fundsHistory,
+            shareDistribution: {
+                owned: owned ? owned.owned : 0,
+                reserved: reserved ? reserved.emergency_reserve : 0,
+                available: available ? available.available_funds : 0
+            },
+            transactions
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Dashboard summary failed' });
+    }
+});
 server.listen(PORT, () => {
     console.log(`Running on http://localhost:${PORT}/`);
 });
