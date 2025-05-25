@@ -28,11 +28,11 @@
                     <div class="aside_options aside_options_selected" onclick="navigate('loans')">
                         <p>Loans</p>
                     </div>
-                    <div class="aside_options"  onclick="navigate('transactions')">
+                    <div class="aside_options" onclick="navigate('transactions')">
                         <p>Transactions</p>
                     </div>
                     <div class="aside_options" onclick="navigate('committe')">
-                        <p>Committe</p>
+                        <p>Committee</p>
                     </div>
                 </div>
                 <div class="df aic jcsb aside_footer">
@@ -48,123 +48,30 @@
             </div>
         </div>
         <div class="main df fdc">
-            <div class="main_header df aic jcsb">
-
-                <div class="df aic gap5">
-                    <div>
-                        <a href="dashboard-admin.html">
-                            Dashboard
-                        </a>
-                    </div>
-                    <div class="bc_icon">
-                        <img src="./icons/right.png" class="icon" alt="right">
-                    </div>
-                    <div>
-                        <a href="loans.html">
-                            Loans
-                        </a>
-                    </div>
+            <div class="main_header df aic gap5" style="box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);">
+                <div>
+                    <a href="dashboard-admin.html">
+                        Dashboard
+                    </a>
+                </div>
+                <div class="bc_icon">
+                    <img src="./icons/right.png" class="icon" alt="right">
                 </div>
                 <div>
-                    <button class="signup" onclick="navigate('loanpage')">
-                        Request loan
-                    </button>
+                    <a href="loans.html">
+                        Loans
+                    </a>
                 </div>
             </div>
 
             <div class="df fg1">
-                <div style="width: 40%; padding: 5px;border-right: 1px solid black;">
+                <div style="width: 40%; padding: 5px; display: flex; flex-direction: column;">
                     <div>
                         <p style="font-size: 18px; font-weight: 600;">
                             List of Loans
                         </p>
                     </div>
-                    <div class="list_wrapper df fdc gap5" id="listWrapper">
-                        <div class="list_item df fdc gap5 list_selected">
-                            <div class="df aic jcsb">
-                                <div>
-                                    <p style="font-size: 18px; font-weight: 600;">01</p>
-                                </div>
-                                <div>
-                                    <div class="status stat_pending"></div>
-                                </div>
-                            </div>
-                            <div class="df aic jcsb">
-                                <div>
-                                    <div>
-                                        <p style="line-height: 20px;">Amount</p>
-                                    </div>
-                                    <div>
-                                        <p class="list_val">₹ 10000</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <p style="line-height: 20px;">Applied On</p>
-                                    </div>
-                                    <div>
-                                        <p class="list_val">13/04/2025</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list_item df fdc gap5 ">
-                            <div class="df aic jcsb">
-                                <div>
-                                    <p style="font-size: 18px; font-weight: 600;">01</p>
-                                </div>
-                                <div>
-                                    <div class="status stat_rejected"></div>
-                                </div>
-                            </div>
-                            <div class="df aic jcsb">
-                                <div>
-                                    <div>
-                                        <p style="line-height: 20px;">Amount</p>
-                                    </div>
-                                    <div>
-                                        <p class="list_val">₹ 10000</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <p style="line-height: 20px;">Applied On</p>
-                                    </div>
-                                    <div>
-                                        <p class="list_val">13/04/2025</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list_item df fdc gap5">
-                            <div class="df aic jcsb">
-                                <div>
-                                    <p style="font-size: 18px; font-weight: 600;">01</p>
-                                </div>
-                                <div>
-                                    <div class="status stat_accepted"></div>
-                                </div>
-                            </div>
-                            <div class="df aic jcsb">
-                                <div>
-                                    <div>
-                                        <p style="line-height: 20px;">Amount</p>
-                                    </div>
-                                    <div>
-                                        <p class="list_val">₹ 10000</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <p style="line-height: 20px;">Applied On</p>
-                                    </div>
-                                    <div>
-                                        <p class="list_val">13/04/2025</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="list_wrapper df fdc gap5 fg1" id="listWrapper"> </div>
                 </div>
                 <div style="width: 60%;  padding: 5px;">
                     <div>
@@ -173,102 +80,19 @@
                         </p>
                     </div>
                     <div class="view_wrapper df fdc gap20" id="viewWrapper">
-                        <!-- <div style="width: 90%; padding: 30px;">
+                        <div style="width: 90%; padding: 30px;">
                             <img src="./illustrator/select something.png" class="icon" alt="">
                         </div>
                         <div style="text-align: center;">
                             <p style="font-size: 20px;">
                                 Select a loan to view its details.
                             </p>
-                        </div> -->
-                        <div class="df jcsb aic">
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Loan Amount requested</p>
-                                </div>
-                                <div>
-                                    <p class="list_val ">₹ 15000</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Interest per Annum(%)</p>
-                                </div>
-                                <div>
-                                    <p class="list_val">10.5</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Monthly EMI</p>
-                                </div>
-                                <div>
-                                    <p class="list_val">10.5</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div style="padding: 10px; border-radius: 5px; border: 1px solid var(--bg-medium); background-color: var(--bg-medium);">Pending</div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p style="color: var(--bg-darker);">Purpose</p>
-                            </div>
-                            <div>
-                                <p class="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias, aspernatur iusto possimus hic pariatur voluptate ad quae velit perspiciatis eos sint ipsam nulla accusamus odit id! Molestiae similique consectetur voluptas!</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p style="color: var(--bg-darker);">Applied on</p>
-                            </div>
-                            <div>
-                                <p class="list_val">12/03/2025</p>
-                            </div>
-                        </div>
-                        <div class="df fdc gap20">
-                            <div style="margin-bottom: 5px; padding: 5px 0;">
-                                <p style="font-size: 18px;">Collateral details</p>
-                            </div>
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Collateral type</p>
-                                </div>
-                                <div>
-                                    <p class="list_val">vehicle</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Collateral address</p>
-                                </div>
-                                <div>
-                                    <p class="list_val">vehicle</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Collateral number</p>
-                                </div>
-                                <div>
-                                    <p class="list_val">vehicle</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <p style="color: var(--bg-darker);">Collateral details</p>
-                                </div>
-                                <div>
-                                    <p class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto dicta natus voluptatum adipisci optio dignissimos, laborum placeat enim temporibus vero? Tenetur ipsam qui eum suscipit doloremque magnam nihil fuga accusamus?</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="./js/navigate.js"></script>
 
     <script>
         function fetchViewDetails(ele) {
@@ -276,8 +100,6 @@
             listItems.forEach(listItem => {
                 listItem.classList.remove("list_selected");
             });
-
-            debugger
 
             ele.classList.add("list_selected");
             const settings = {
@@ -384,6 +206,17 @@
             });
 
         }
+        function normalizeDateToYMDHM(isoString) {
+            const date = new Date(isoString);
+
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // months are 0-indexed
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+            return `${year}-${month}-${day} ${hours}:${minutes}`;
+        }
         window.addEventListener("DOMContentLoaded", () => {
             let memberDetails = JSON.parse(window.localStorage.getItem("memberDetails"));
             let id = memberDetails.member_id;
@@ -423,7 +256,7 @@
                             '                <p style="line-height: 20px; color: var(--bg-darker);">Amount</p>' +
                             '            </div>' +
                             '            <div>' +
-                            '                <p class="list_val">₹' + loan.amount + '</p>' +
+                            '                <p class="list_val">' + loan.amount + '</p>' +
                             '            </div>' +
                             '        </div>' +
                             '        <div>' +
@@ -441,19 +274,11 @@
 
                 }
             });
+
+
         });
-        function normalizeDateToYMDHM(isoString) {
-            const date = new Date(isoString);
-
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // months are 0-indexed
-            const day = String(date.getDate()).padStart(2, '0');
-            const hours = String(date.getHours()).padStart(2, '0');
-            const minutes = String(date.getMinutes()).padStart(2, '0');
-
-            return `${year}-${month}-${day} ${hours}:${minutes}`;
-        }
     </script>
+    <script src="./js/navigate.js"></script>
 </body>
 
 </html>

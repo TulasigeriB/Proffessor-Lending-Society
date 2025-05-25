@@ -1,86 +1,307 @@
-.list_wrapper {
-    padding: 5px;
+/* --- Black & White Modern Loans List & View --- */
 
-}
-
-.list_item {
-    padding: 10px 15px;
-}
-
-.list_item:hover {
+body, .root_parent, .main, .aside {
+    background: #fff !important;
+    color: #222 !important;
+  }
+  
+  .root_parent {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .aside {
+    flex-shrink: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 0 16px rgba(30,32,37,0.08);
+  }
+  
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .main_header {
+    flex-shrink: 0;
+  }
+  
+  .df.fg1 {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+    overflow: hidden;
+  }
+  
+  .list_wrapper {
+    height: auto;
+    max-height: 100vh;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+    padding: 24px 18px;
+    margin-top: 18px;
+    border: 1.5px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .list_item {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    padding: 20px 18px;
+    transition: box-shadow 0.18s, transform 0.18s, background 0.18s;
     cursor: pointer;
-    background-color: #e5e5e5;
-}
-
-.list_selected {
-    background-color: #e5e5e5;
-}
-
-.list_val {
-    font-size: 17px;
-    line-height: 30px;
-}
-
-.list_selected .list_val {
-    font-weight: 600;
-}
-
-.status {
-    width: 20px;
-    height: 20px;
+    border: 1px solid #ededed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .list_item:hover, .list_item.list_selected {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    background: #f0f0f0;
+    transform: scale(1.018);
+  }
+  
+  .list_item .status {
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-}
-
-.stat_defaulted {
-    background-color: var(--status-defaulted);
-}
-
-.stat_pending {
-    background-color: var(--status-pending);
-}
-
-.stat_approved {
-    background-color: var(--status-approved);
-}
-
-.view_wrapper {
-    padding: 5px;
-    overflow: auto;
-}
-
-.view_status_btn {
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.view_status_btn_pending {
-    border: 1px solid var(--bg-medium);
-    background-color: var(--bg-medium);
-}
-
-.view_status_btn_approved {
-    border: 1px solid var(--status-approved);
-    background-color: var(--status-approved);
-}
-
-.view_status_btn_defaulted {
-    border: 1px solid var(--status-defaulted);
-    background-color: var(--status-defaulted);
-}
-
-.signup {
-    background: var(--primary-dark);
-    color: var(--bg-lightest);
-    padding: 0.8rem;
+    margin-left: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    background: #fff;
+    border: 2px solid #bbb;
+  }
+  .stat_pending { background: #e5e5e5 !important; border-color: #bbb !important; }
+  .stat_accepted { background: #bbb !important; border-color: #888 !important; }
+  .stat_rejected { background: #222 !important; border-color: #000 !important; }
+  
+  .list_item p {
+    color: #222;
+    font-size: 1.08rem;
+    margin-bottom: 2px;
+  }
+  .list_item .list_val {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* --- View Wrapper Modernization --- */
+  .view_wrapper {
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    border: 1.5px solid #e5e5e5;
+    padding: 40px 36px;
+    margin-top: 18px;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    transition: box-shadow 0.3s, border 0.3s;
+  }
+  
+  .view_wrapper .df.jcsb.aic {
+    gap: 36px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .view_wrapper .df.jcsb.aic > div {
+    background: #fafbfc;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    padding: 18px 20px;
+    min-width: 160px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #ededed;
+    transition: box-shadow 0.18s, border 0.18s;
+  }
+  
+  .view_wrapper .df.jcsb.aic > div:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  }
+  
+  .view_wrapper p {
+    margin: 0 0 6px 0;
+    color: #222;
+    font-size: 1.08rem;
+  }
+  
+  .view_wrapper .list_val {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Collateral section */
+  .view_wrapper .df.fdc.gap20 > div {
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    padding: 12px 16px;
+    margin-bottom: 8px;
+  }
+  .view_wrapper .df.fdc.gap20 > div > p:first-child {
+    color: #222;
+    font-weight: 600;
+  }
+  
+  /* Status badge in view */
+  .view_status_btn {
+    display: inline-block;
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 8px;
+    background: #f0f0f0;
+    color: #222;
     border: none;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.signup:hover {
-    background: var(--primary-medium);
-    transform: translateY(-2px);
-}
+    box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+  }
+  .view_status_btn_pending { background: #e5e5e5; color: #888; }
+  .view_status_btn_accepted { background: #bbb; color: #222; }
+  .view_status_btn_rejected { background: #222; color: #fff; }
+  
+  /* Responsive tweaks */
+  @media (max-width: 900px) {
+    .root_parent, .aside, .main, .df.fg1 {
+      height: auto;
+      overflow: visible;
+    }
+    .view_wrapper {
+      max-height: none;
+      overflow: visible;
+    }
+    .list_wrapper, .view_wrapper {
+      padding: 10px 6px;
+      margin-top: 10px;
+      gap: 10px;
+    }
+    .view_wrapper .df.jcsb.aic > div {
+      min-width: 120px;
+      padding: 10px 8px;
+    }
+  }
+  
+  /* --- Loan Timeline Vertical (using root colors) --- */
+  .loan_timeline {
+    position: relative;
+    margin: 36px 0 32px 0;
+    padding-left: 48px;
+  }
+  
+  .timeline_event {
+    position: relative;
+    margin-bottom: 48px;
+    min-height: 80px;
+  }
+  .timeline_event:last-child {
+    margin-bottom: 0;
+  }
+  
+  .timeline_circle {
+    position: absolute;
+    left: -38px;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid #222;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+    transition: border 0.2s, background 0.2s;
+  }
+  .timeline_event.completed .timeline_circle {
+    background: #bbb;
+    border-color: #222;
+  }
+  .timeline_event.current .timeline_circle {
+    background: #222;
+    border-color: #000;
+  }
+  
+  .timeline_line {
+    position: absolute;
+    left: -26px;
+    top: 24px;
+    width: 4px;
+    height: calc(100% - 24px);
+    background: linear-gradient(to bottom, #222 60%, #eee 100%);
+    z-index: 1;
+    border-radius: 2px;
+  }
+  
+  .timeline_card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    padding: 14px 18px;
+    min-width: 180px;
+    max-width: 400px;
+    margin-left: 0;
+    border: 1px solid #ededed;
+    position: relative;
+    transition: border 0.18s;
+  }
+  .timeline_event.completed .timeline_card,
+  .timeline_event.current .timeline_card {
+    border-left: none;
+  }
+  
+  .timeline_title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 4px;
+  }
+  .timeline_event.completed .timeline_title {
+    color: #bbb;
+  }
+  .timeline_event.current .timeline_title {
+    color: #000;
+  }
+  
+  .timeline_date {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  
+  .timeline_desc {
+    font-size: 1.05rem;
+    color: #222;
+  }
+  
+  @media (max-width: 700px) {
+    .loan_timeline {
+      padding-left: 24px;
+    }
+    .timeline_card {
+      min-width: 0;
+      max-width: 100%;
+      padding: 12px 10px;
+    }
+  }

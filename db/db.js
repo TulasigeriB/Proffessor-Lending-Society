@@ -182,3 +182,35 @@ export async function adminLogin(params) {
         })
     })
 }
+
+export async function getTransactionsByMemberId(memberId) {
+    return new Promise(async (resolve, reject) => {
+        let query = `SELECT t.*, m.name as member_name 
+                    FROM Transactions t 
+                    LEFT JOIN Members m ON t.member_id = m.member_id 
+                    WHERE t.member_id = '${memberId}'
+                    ORDER BY t.transaction_date DESC`;
+
+        connection.query(query, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}
+
+export async function getCommitteeMembers() {
+    return new Promise(async (resolve, reject) => {
+        let query = `SELECT cm.*, m.name, m.email, m.phone, m.department, m.institution FROM committee_members cm JOIN members m ON cm.member_id = m.member_id WHERE cm.status = 'active' ORDER BY cm.role DESC, cm.start_date DESC`;
+
+        connection.query(query, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}

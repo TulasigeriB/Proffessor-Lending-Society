@@ -4,7 +4,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import { getLoansById, getLoansByLoanId, getLoanDefaults, login, register, getLoans, createLoan, createLoanRepayment, buyShare, adminLogin, getUserById, connection } from './db/db.js'
+import { getLoansById, getLoansByLoanId, getLoanDefaults, login, register, getLoans, createLoan, createLoanRepayment, buyShare, adminLogin, getUserById, connection, getTransactionsByMemberId, getCommitteeMembers } from './db/db.js'
 
 dotenv.config();
 
@@ -45,18 +45,17 @@ app.post("/api/admin/login", async (req, res) => {
         if (typeof credentials != "string") {
             if (credentials.password === req.body.password && startsWithAdminEmail(credentials.email)) {
                 res.status(200).sendFile(__dirname + "/public/dashboard-admin.html");
-                // res.status(200).send(credentials);
             } else {
                 res.status(401).send({ "error": 'Invalid password' });
             }
         } else {
             res.status(401).send({ "error": 'Invalid password' });
         }
-
     } catch (error) {
-
+        console.error('Admin login error:', error);
+        res.status(500).send({ "error": "Internal server error" });
     }
-})
+});
 
 
 // START OF AUTH ENDPOINTS
@@ -92,10 +91,10 @@ app.post("/api/auth/login", async (req, res) => {
 
     } catch (error) {
         console.error(error);
+        res.status(500).send({ "error": "Internal server error" });
     }
 });
 
-app.post
 // END OF AUTH ENDPOINTS
 
 // START OF LOAN ENDPOINTS
@@ -168,36 +167,77 @@ app.get("/api/loan-defaults", async (req, res) => {
 app.get("/api/dashboard/summary", async (req, res) => {
     try {
         const [
-            [sharePriceRow],
-            [totalSharesRow],
-            [fundRow],
-            fundsHistoryRows,
-            [ownedRow],
-            [reservedRow],
-            [availableRow],
-            transactionsRows
-        ] =await Promise.all([
-            connection.query(`SELECT current_price FROM Shares ORDER BY purchase_date DESC LIMIT 1`),
-            connection.query(`SELECT SUM(share_count) as total FROM Members WHERE status='active'`),
-            connection.query(`SELECT total_value, available_funds, emergency_reserve FROM Fund ORDER BY update_date DESC LIMIT 1`),
-            connection.query(`SELECT DATE_FORMAT(update_date, '%b') as month, total_value FROM Fund ORDER BY update_date`),
-            connection.query(`SELECT SUM(share_count) as owned FROM Members WHERE status='active'`),
-            connection.query(`SELECT emergency_reserve FROM Fund ORDER BY update_date DESC LIMIT 1`),
-            connection.query(`SELECT available_funds FROM Fund ORDER BY update_date DESC LIMIT 1`),
-            connection.query(`SELECT t.type, t.amount, m.name FROM Transactions t LEFT JOIN Members m ON t.member_id = m.member_id ORDER BY t.transaction_date DESC LIMIT 5`)
+            sharePriceResult,
+            totalSharesResult,
+            fundResult,
+            fundsHistoryResult,
+            ownedResult,
+            reservedResult,
+            availableResult,
+            transactionsResult
+        ] = await Promise.all([
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT current_price FROM Shares ORDER BY purchase_date DESC LIMIT 1`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT SUM(share_count) as total FROM Members WHERE status='active'`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT total_value, available_funds, emergency_reserve FROM Fund ORDER BY update_date DESC LIMIT 1`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT DATE_FORMAT(update_date, '%b') as month, total_value FROM Fund ORDER BY update_date`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT SUM(share_count) as owned FROM Members WHERE status='active'`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT emergency_reserve FROM Fund ORDER BY update_date DESC LIMIT 1`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT available_funds FROM Fund ORDER BY update_date DESC LIMIT 1`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            }),
+            new Promise((resolve, reject) => {
+                connection.query(`SELECT t.type, t.amount, m.name FROM Transactions t LEFT JOIN Members m ON t.member_id = m.member_id ORDER BY t.transaction_date DESC LIMIT 5`, (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                });
+            })
         ]);
-        
-        const sharePrice = sharePriceRow ? sharePriceRow.current_price : 0;
-        const totalShareHoldings = totalSharesRow ? totalSharesRow.total : 0;
+
+        // MySQL returns results directly from the Promise
+        const sharePrice = sharePriceResult[0]?.current_price || 0;
+        const totalShareHoldings = totalSharesResult[0]?.total || 0;
         const currentMRP = sharePrice;
-        const fund = fundRow || {};
-        const fundsHistory = fundsHistoryRows || [];
+        const fund = fundResult[0] || {};
+        const fundsHistory = fundsHistoryResult || [];
         const shareDistribution = {
-            owned: ownedRow ? ownedRow.owned : 0,
-            reserved: reservedRow ? reservedRow.emergency_reserve : 0,
-            available: availableRow ? availableRow.available_funds : 0
+            owned: ownedResult[0]?.owned || 0,
+            reserved: reservedResult[0]?.emergency_reserve || 0,
+            available: availableResult[0]?.available_funds || 0
         };
-        const transactions = transactionsRows || [];
+        const transactions = transactionsResult || [];
 
         res.json({
             sharePrice,
@@ -208,25 +248,38 @@ app.get("/api/dashboard/summary", async (req, res) => {
             shareDistribution,
             transactions
         });
-
-        res.json({
-            sharePrice: sharePrice ? sharePrice.current_price : 0,
-            totalShareHoldings: totalShares ? totalShares.total : 0,
-            currentMRP,
-            fund,
-            fundsHistory,
-            shareDistribution: {
-                owned: owned ? owned.owned : 0,
-                reserved: reserved ? reserved.emergency_reserve : 0,
-                available: available ? available.available_funds : 0
-            },
-            transactions
-        });
     } catch (error) {
-        console.error(error);
+        console.error('Dashboard summary error:', error);
         res.status(500).json({ error: 'Dashboard summary failed' });
     }
 });
+
+// START OF TRANSACTION ENDPOINTS
+app.get("/api/transactions/:id", async (req, res) => {
+    try {
+        const transactions = await getTransactionsByMemberId(req.params.id);
+        res.status(200).json(transactions);
+    } catch (error) {
+        console.error('Error fetching transactions:', error);
+        res.status(500).json({ error: "Error while fetching transactions" });
+    }
+});
+// END OF TRANSACTION ENDPOINTS
+
+// START OF COMMITTEE ENDPOINTS
+app.get("/api/committee", async (req, res) => {
+    try {
+        const committeeMembers = await getCommitteeMembers();
+
+        res.status(200).json(committeeMembers);
+    } catch (error) {
+        console.error('Error fetching committee members:', error);
+        
+        res.status(500).json({ error: "Error while fetching committee members" });
+    }
+});
+// END OF COMMITTEE ENDPOINTS
+
 server.listen(PORT, () => {
     console.log(`Running on http://localhost:${PORT}/`);
 });

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loans</title>
+  <title>Committee</title>
   <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/var.css">
   <link rel="stylesheet" href="./css/common.css">
@@ -12,9 +12,10 @@
   <style>
     .commitee-container {
       padding: 20px;
-      max-width: 400px;
       display: flex;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
     }
 
     .comm-cards {
@@ -25,7 +26,7 @@
       display: flex;
       flex-direction: column;
       gap: 18px;
-      width: 200px;
+      width: 300px;
       transition: transform 0.2s ease-in-out;
     }
 
@@ -41,14 +42,32 @@
 
     .label {
       font-size: 13px;
-      color: #000000;
+      color: #666666;
       margin-bottom: 4px;
     }
 
     .value {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 500;
-      color: #444444;
+      color: #333333;
+    }
+
+    .error-message {
+      color: #dc3545;
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .no-data {
+      color: #666666;
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -66,14 +85,14 @@
           <div class="aside_options" onclick="navigate('dashboard')">
             <p>Dashboard</p>
           </div>
-          <div class="aside_options aside_options_selected" onclick="navigate('loans')">
+          <div class="aside_options" onclick="navigate('loans')">
             <p>Loans</p>
           </div>
           <div class="aside_options" onclick="navigate('transactions')">
             <p>Transactions</p>
           </div>
-          <div class="aside_options" onclick="navigate('committe')">
-            <p>committe</p>
+          <div class="aside_options aside_options_selected" onclick="navigate('committe')">
+            <p>Committee</p>
           </div>
         </div>
         <div class="df aic jcsb aside_footer">
@@ -82,7 +101,7 @@
           </div>
           <div>
             <div class="icons_wrapper">
-              <img src="./icons/logout.png" class="icon" alt="">
+              <img src="./icons/logout.png" class="icon" alt="" onclick="handleLogout()">
             </div>
           </div>
         </div>
@@ -90,7 +109,6 @@
     </div>
     <div class="main df fdc">
       <div class="main_header df aic jcsb">
-
         <div class="df aic gap5">
           <div>
             <a href="dashboard-admin.html">
@@ -101,73 +119,20 @@
             <img src="./icons/right.png" class="icon" alt="right">
           </div>
           <div>
-            <a href="loans.html">
-              committe
+            <a href="committe.html">
+              Committee
             </a>
           </div>
         </div>
-        <div>
-          <button class="signup" onclick="navigate('loanpage')">
-            Request loan
-          </button>
-        </div>
       </div>
 
-      <div class="">
-        <div class="commitee-container">
-          <div class="comm-cards">
-            <div class="card-item">
-              <p class="label">Name</p>
-              <p class="value">Vijay</p>
-            </div>
-            <div class="card-item">
-              <p class="label">Role</p>
-              <p class="value">Member</p>
-            </div>
-            <div class="card-item">
-              <p class="label">Start Date</p>
-              <p class="value">11/09/2003</p>
-            </div>
-            <div class="card-item">
-              <p class="label">End Date</p>
-              <p class="value">--</p>
-            </div>
-            <div class="card-item">
-              <p class="label">Status</p>
-              <p class="value">Active</p>
-            </div>
-          </div>
-          <div class="comm-cards">
-            <div class="card-item">
-              <p class="label">Name</p>
-              <p class="value">Vijay</p>
-            </div>
-            <div class="card-item">
-              <p class="label">Role</p>
-              <p class="value">Member</p>
-            </div>
-            <div class="card-item">
-              <p class="label">Start Date</p>
-              <p class="value">11/09/2003</p>
-            </div>
-            <div class="card-item">
-              <p class="label">End Date</p>
-              <p class="value">--</p>
-            </div>
-            <div class="card-item">
-              <p class="label">Status</p>
-              <p class="value">Active</p>
-            </div>
-          </div>
-        </div>
+      <div class="commitee-container">
+        <!-- Committee members will be dynamically loaded here -->
       </div>
     </div>
   </div>
   <script src="./js/navigate.js"></script>
-
-  <script>
-
-  </script>
+  <script src="./js/committee.js"></script>
 </body>
 
 </html>

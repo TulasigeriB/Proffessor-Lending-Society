@@ -35,7 +35,7 @@
 }
 
 #transactionsTable th {
-    background: var(--primary);
+    background: var(--bg-darker);
     color: white;
     font-weight: 500;
 }
